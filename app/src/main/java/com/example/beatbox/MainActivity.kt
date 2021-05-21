@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         RecyclerView.ViewHolder(binding.root) {
 
         init {
-            binding.viewModel = SoundViewModel()
+            binding.viewModel = SoundViewModel(beatBox)
         }
 
         fun bind(sound: Sound) {
@@ -64,5 +64,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun getItemCount() = sounds.size
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        beatBox.release()
     }
 }
